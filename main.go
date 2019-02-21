@@ -160,7 +160,7 @@ func gitRoot() string {
 func changedFiles(commitRange string) []string {
 	root := gitRoot()
 
-	cmd := exec.Command("git", "diff-tree", "--no-commit-id", "--name-only", "-r", commitRange)
+	cmd := exec.Command("git", "diff", "--name-only", commitRange)
 	dat, err := cmd.Output()
 	if err != nil {
 		die("Could not run git diff-tree: %v", err)
