@@ -20,15 +20,13 @@ func main() {
 	if len(*d) > 0 {
 		ignoreDirs = strings.Split(*d, ",")
 	}
-	fmt.Printf("ignored directories: %v \n", ignoreDirs)
+
 	args := flag.Args()
 	if len(args) != 1 {
 		die("Usage: %s commit..commit\n", os.Args[0])
 	}
 
 	commitRange := args[0]
-	fmt.Printf("Commit Range: %v \n", args[0])
-
 	files := changedFiles(commitRange)
 
 	cwd, err := os.Getwd()
