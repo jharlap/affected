@@ -40,7 +40,6 @@ func main() {
 	var modifiedPackages []*build.Package
 	buildContext := build.Default
 	for _, f := range files {
-
 		if isIgnored(f) {
 			continue
 		}
@@ -106,6 +105,9 @@ func main() {
 		var newAdditions []string
 		for _, p := range affectedPackages {
 			for _, imp := range imports[p] {
+				if isIgnored(imp) {
+					continue
+				}
 				var found bool
 				for _, p := range affectedPackages {
 					if imp == p {
