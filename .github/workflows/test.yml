@@ -25,7 +25,7 @@ jobs:
       run: go test -mod=vendor -v ./...
 
     - name: Build
-      run: go build 
+      run: go build -mod=vendor
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
