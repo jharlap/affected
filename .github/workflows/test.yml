@@ -10,6 +10,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    env:
+      GOOS: linux
+      GOARCH: amd64
     steps:
     - uses: actions/checkout@v2
 
@@ -20,3 +23,15 @@ jobs:
 
     - name: Test
       run: go test -mod=vendor -v ./...
+
+    - name: Build
+      run: go build 
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "latest"
+        prerelease: true
+        title: "Development Build"
+        files: |
+          affected
