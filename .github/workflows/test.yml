@@ -1,8 +1,5 @@
-name: Go
-
+name: test
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -20,3 +17,6 @@ jobs:
 
     - name: Test
       run: go test -mod=vendor -v ./...
+
+    - name: Build
+      run: go build -mod=vendor
