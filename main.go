@@ -75,6 +75,10 @@ func main() {
 			return
 		}
 
+		if isIgnored(importPath) {
+			return
+		}
+
 		pkg, err := buildContext.Import(importPath, repo, build.AllowBinary)
 		if err, ok := err.(*build.NoGoError); err != nil && ok {
 			return
